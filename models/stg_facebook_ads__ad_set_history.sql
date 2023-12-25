@@ -1,6 +1,6 @@
 {{ config(enabled=var('ad_reporting__facebook_ads_enabled', True),
     partition_by={
-      "field": "_fivetran_synced", 
+      "field": "updated_at", 
       "data_type": "TIMESTAMP",
       "granularity": "day"
     }
