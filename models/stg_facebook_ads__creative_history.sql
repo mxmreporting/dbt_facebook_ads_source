@@ -1,4 +1,10 @@
-{{ config(enabled=var('ad_reporting__facebook_ads_enabled', True)) }}
+{{ config(enabled=var('ad_reporting__facebook_ads_enabled', True),
+    partition_by={
+      "field": "_fivetran_synced", 
+      "data_type": "TIMESTAMP",
+      "granularity": "day"
+    }
+    ) }}
 
 with base as (
 
