@@ -1,4 +1,5 @@
 {{ config(enabled=var('ad_reporting__facebook_ads_enabled', True),
+    unique_key = ['source_relation','creative_id','_fivetran_synced'],
     partition_by={
       "field": "_fivetran_synced", 
       "data_type": "TIMESTAMP",
