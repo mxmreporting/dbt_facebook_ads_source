@@ -37,11 +37,11 @@ final as (
     select
         source_relation, 
         cast(id as {{ dbt.type_bigint() }}) as account_id,
-        _fivetran_synced,
+        CAST(FORMAT_TIMESTAMP("%F %T", _fivetran_synced, "America/New_York") AS TIMESTAMP) as _fivetran_synced,    --EST Conversion
         name as account_name,
         account_status,
         business_country_code,
-        created_time as created_at,
+        CAST(FORMAT_TIMESTAMP("%F %T", created_time, "America/New_York") AS TIMESTAMP)  as created_at,        --EST Conversion 
         currency,
         timezone_name,
         row_number() over (partition by source_relation, id order by _fivetran_synced desc) = 1 as is_most_recent_record
