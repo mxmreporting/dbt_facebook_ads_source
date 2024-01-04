@@ -36,13 +36,13 @@ final as (
 
     select
         source_relation, 
-        updated_time as updated_at,
-        created_time as created_at,
+        CAST(FORMAT_TIMESTAMP("%F %T", updated_time, "America/New_York") AS TIMESTAMP) as  updated_at,    --EST Conversion 
+        CAST(FORMAT_TIMESTAMP("%F %T", created_time, "America/New_York") AS TIMESTAMP) as created_at,        --EST Conversion 
         cast(account_id as {{ dbt.type_bigint() }}) as account_id,
         cast(id as {{ dbt.type_bigint() }}) as campaign_id,
         name as campaign_name,
-        start_time as start_at,
-        stop_time as end_at,
+        CAST(FORMAT_TIMESTAMP("%F %T", start_time, "America/New_York") AS TIMESTAMP) as start_at,    --EST Conversion
+        CAST(FORMAT_TIMESTAMP("%F %T", stop_time, "America/New_York") AS TIMESTAMP) as end_at,        --EST Conversion 
         status,
         daily_budget,
         lifetime_budget,
