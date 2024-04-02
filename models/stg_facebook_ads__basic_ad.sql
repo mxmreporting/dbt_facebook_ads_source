@@ -39,7 +39,7 @@ final as (
         cast(ad_id as {{ dbt.type_bigint() }}) as ad_id,
         ad_name,
         adset_name as ad_set_name,
-        DATE(TIMESTAMP(date, "America/New_York")) AS date_day,     --EST timezone conversion
+        date as date_day,
         cast(account_id as {{ dbt.type_bigint() }}) as account_id,
         impressions,
         coalesce(inline_link_clicks,0) as clicks,
